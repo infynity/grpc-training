@@ -2,7 +2,13 @@ syntax = "proto3";
 package services;
 
 import "google/api/annotations.proto";
+import "Model.proto";
 
+//message ProdModel{
+//    int32 prod_id=1;
+//    string  prod_name=2;
+//    float prod_price=3;
+//}
 
 enum    ProdArea{
     A=0;
@@ -40,4 +46,7 @@ service ProdService{
             get:"/v1/prods/{size}"
         };
     };
+
+
+    rpc getProdInfo(ProdRequest) returns (ProdModel);
 }

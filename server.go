@@ -83,7 +83,9 @@ func httpCon(){
 func doubleTls(){
 	creds :=helper.GetDoubleTls()
 	rpcServer := grpc.NewServer(grpc.Creds(creds))
-	services.RegisterProdServiceServer(rpcServer,new(services.ProdService))
+	services.RegisterProdServiceServer(rpcServer,new(services.ProdService))//商品服务
+
+	services.RegisterOrderServiceServer(rpcServer,new(services.OrderService))//订单服务
 	lis,_ := net.Listen("tcp",":8081")
 	fmt.Println("start listening")
 	rpcServer.Serve(lis)

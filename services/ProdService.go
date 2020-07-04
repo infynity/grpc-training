@@ -52,3 +52,11 @@ func (this *ProdService)GetProdStks(ctx context.Context, in *QuerySize) (*ProdSt
 		Prodres: res ,
 	},nil
 }
+
+func (this *ProdService)GetProdInfo(ctx context.Context, in *ProdRequest) (*ProdModel, error){
+	return &ProdModel{
+		ProdId: 12,
+		ProdName: "asdut8 实打实的撒",
+		ProdPrice: 12.2,
+	},nil
+}
