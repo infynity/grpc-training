@@ -2,18 +2,42 @@ syntax = "proto3";
 package services;
 
 import "google/api/annotations.proto";
+
+
+enum    ProdArea{
+    A=0;
+    B=1;
+    C=3;
+}
+
 message ProdRequest{
     int32 prod_id=1;
+    ProdArea prod_area=2;
 }
 
 message ProdResponse{
-    int32 prod_stock=100;
+    int32 prod_stock=1;
+}
+
+message QuerySize{
+    int32 size=1;
+}
+
+message ProdStkList{
+    repeated ProdResponse  prodres=1;
 }
 
 service ProdService{
     rpc getProdStk(ProdRequest) returns (ProdResponse){
         option (google.api.http)={
-            get:"/v1/prod/{prod_id}"
+            get:"/v1/prod/{prod_id}/fuckarea/{prod_area}"
+        };
+    };
+
+
+    rpc getProdStks(QuerySize) returns (ProdStkList){
+        option (google.api.http)={
+            get:"/v1/prods/{size}"
         };
     };
 }
